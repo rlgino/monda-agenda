@@ -54,7 +54,7 @@ function Agenda() {
                 .lista-contactos {
                     display: flex;
                     flex-direction: row;
-                    justify-content: space-around;
+                    justify-content: space-between;
                     flex-wrap: wrap;
                 }
 

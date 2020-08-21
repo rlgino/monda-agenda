@@ -1,20 +1,12 @@
-import Link from 'next/link'
+import { useRouter } from 'next/router'
 
-const Home = (params) => {
-    const redirect = (e) => {
-        navigator
-    }
+const Home = ({ ctx }) => {
+    const router = useRouter()
+    router.push('/login')
     return (<>
         <main>
             <div className="login-container">
-                <h1>Monda Agenda</h1>
-                <input type="text" placeholder="Usuario" />
-                <br />
-                <input type="password" placeholder="Password" />
-                <br/>
-                <Link href="/agenda">
-                    <input type="submit" value="Login" />
-                </Link>
+                <h1>Bienvenido!</h1>
             </div>
         </main>
 
@@ -41,6 +33,15 @@ const Home = (params) => {
         </style>
     </>
     )
+}
+
+Home.getInitialProps = ctx => {
+    // We check for ctx.res to make sure we're on the server.
+    if (ctx.res) {
+        ctx.res.writeHead(302, { Location: '/login' });
+        ctx.res.end();
+    }
+    return {};
 }
 
 export default Home
