@@ -19,4 +19,13 @@ const loginWithMailAndPassowrd = (mail, password) => {
     return firebase.auth().signInWithEmailAndPassword(mail, password)
 }
 
-export { loginWithMailAndPassowrd }
+const onAuthChange = (onChange) => {
+    return firebase.auth().onAuthStateChanged((user) => {
+        const normalizedUser = user ? user : null
+        console.log("Usuario loggueado?");
+        console.log(user);
+        onChange(normalizedUser)
+    })
+}
+
+export { loginWithMailAndPassowrd, onAuthChange }
