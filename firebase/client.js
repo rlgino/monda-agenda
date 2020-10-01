@@ -15,7 +15,6 @@ var firebaseConfig = {
 // Initialize Firebase
 if (!firebase.apps.length) {
     firebase.initializeApp(firebaseConfig)
-    if ('measurementId' in firebaseConfig) firebase.analytics()
 }
 
 const loginWithMailAndPassowrd = (mail, password) => {
