@@ -1,10 +1,24 @@
 import { useRouter } from 'next/router'
+import { useUser } from '../../context/usercontext'
+import { useEffect } from 'react'
 
 const Home = ({ ctx }) => {
+    const { user, signOut } = useUser()
     const router = useRouter()
-    router.push('/login')
+    const logout = () => {
+        signOut()
+    }
+
+    useEffect(() => {
+        if (!user) {
+            router.push("/login")
+        }
+        return () => { }
+    }, [user])
+
     return (<>
         <main>
+            <input type="button" value="Salir" onClick={e => logout()} />
             <div className="login-container">
                 <h1>Bienvenido!</h1>
             </div>
@@ -33,15 +47,6 @@ const Home = ({ ctx }) => {
         </style>
     </>
     )
-}
-
-Home.getInitialProps = ctx => {
-    // We check for ctx.res to make sure we're on the server.
-    if (ctx.res) {
-        ctx.res.writeHead(302, { Location: '/login' });
-        ctx.res.end();
-    }
-    return {};
 }
 
 export default Home

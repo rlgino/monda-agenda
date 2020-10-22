@@ -25,17 +25,16 @@ const registerWithMailAndPassword = (mail, password) => {
     return firebase.auth().createUserWithEmailAndPassword(mail, password)
 }
 
+const firebaseSignOut = () => {
+    return firebase.auth().signOut()
+}
+
 const onAuthChange = (onChange) => {
-    return firebase.auth().onAuthStateChanged((user) => {
-        const normalizedUser = user ? user : null
-        console.log("Usuario loggueado?");
-        console.log(user);
-        onChange(normalizedUser)
-    })
+    return firebase.auth().onAuthStateChanged(onChange)
 }
 
 const logEvent = (event, attributes) => {
     firebase.analytics().logEvent(event, attributes);
 }
 
-export { loginWithMailAndPassowrd, onAuthChange, registerWithMailAndPassword, logEvent }
+export { loginWithMailAndPassowrd, onAuthChange, registerWithMailAndPassword, logEvent, firebaseSignOut }
