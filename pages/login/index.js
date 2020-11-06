@@ -1,7 +1,9 @@
-import { loginWithMailAndPassowrd, logEvent, registerWithMailAndPassword } from './../../firebase/client'
+import { logEvent } from './../../firebase/client'
 import { useState, useEffect } from 'react';
 import { useUser } from '../../context/usercontext';
 import { useRouter } from 'next/router';
+import { faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const index = () => {
 
@@ -29,7 +31,9 @@ const index = () => {
 
     const loginClick = (e) => {
         e.preventDefault()
-        login(mail, pass)
+        login(mail, pass).catch(e => {
+            setErrorMsg(e.message)
+        })
     }
 
     const register = (e) => {
@@ -43,13 +47,30 @@ const index = () => {
                 <form onSubmit={e => { isRegister ? register(e) : loginClick(e) }}>
                     <img src="/logo.jpeg" alt="Monda Logo" />
                     <h1>Bienvenido</h1>
-                    <input type="email" placeholder="Email" onChange={e => setMail(e.target.value)} required />
-                    <input type="password" placeholder="Password" onChange={e => setPass(e.target.value)} required />
-                    <input type="submit" value={isRegister ? "Registrarse" : "Login"} />
-                    <div onClick={() => changeAction()} className="action">
-                        {!isRegister ? "Registrarse" : "Logguearse"}
+
+                    <div className="field">
+                        <p className="control has-icons-left has-icons-right">
+                            <input className="input" type="email" placeholder="Email" values={mail} onChange={e => setMail(e.target.value)} />
+                            <span className="local-icon">
+                                <FontAwesomeIcon icon={faEnvelope} className="icon is-small is-left" />
+                            </span>
+
+                            <span className="icon is-small is-right">
+                                <i className="fas fa-check"></i>
+                            </span>
+                        </p>
                     </div>
-                    {errorMsg ? <div className="error-msg">{errorMsg}</div> : null}
+                    <div className="field">
+                        <p className="control has-icons-left">
+                            <input className="input" type="password" placeholder="Password" value={pass} onChange={e => setPass(e.target.value)} />
+                            <FontAwesomeIcon icon={faLock} className="icon is-small is-left local-icon" />
+                        </p>
+                    </div>
+                    <div className="control is-flex is-flex-direction-row is-justify-content-space-between">
+                        <button className="button is-success" type="submit">{isRegister ? "Registrarse" : "Login"}</button>
+                        <button className="button is-primary" onClick={() => changeAction()}>{!isRegister ? "Registrarse" : "Logguearse"}</button>
+                    </div>
+                    {errorMsg ? <div className="has-text-danger">{errorMsg}</div> : null}
                 </form>
             </div>
 
@@ -81,33 +102,19 @@ const index = () => {
                     align-items: stretch;
                 }
 
-                input[type="email"],input[type="password"] {
-                    margin-bottom: 1em;
-                    background-color: red;
-                    border: none;
-                    color: black;
-                    padding: 1em;
-                    border-radius: 25px;
-                    width: 95%;
+                .local-icon {
+                    width: 2em;
+                    padding: .2em;
+                    margin-left: 0.3em;
                 }
 
-                input[type="submit"] {
-                    margin-bottom: 1em;
-                    background-color: black;
-                    border: none;
-                    color: white;
-                    padding: 0.5em;
-                    border-radius: 25px;
-                    width: 95%;
+                .control {
+                    width:100%;
                 }
 
                 .error-msg {
                     color: red;
                     font-size: 0.9em;
-                }
-
-                .action {
-                    margin: auto;
                 }
 
                 `}

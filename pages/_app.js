@@ -1,13 +1,20 @@
-import '../styles/globals.css'
-import { onAuthChange } from '../firebase/client'
-import { useState, useEffect } from 'react'
+import Head from 'next/head'
 import { UserProvider } from '../context/usercontext'
+import '../scss/styles.scss'
+import Navbar from '../components/navbar/navbar'
 
 function MyApp({ Component, pageProps }) {
 
-  return <UserProvider>
-    <Component {...pageProps} />
-  </UserProvider>
+  return <>
+    <Head>
+      <title>Monda Agenda</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <UserProvider>
+      <Navbar />
+      <Component {...pageProps} />
+    </UserProvider>
+  </>
 }
 
 export default MyApp
