@@ -6,7 +6,7 @@ export default function Home() {
     <div className={styles.container}>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        <h1 className={styles.title} >
           Veni a guardar tus contactos <Link href="/home">Contactos!</Link>
         </h1>
       </main>
@@ -16,7 +16,7 @@ export default function Home() {
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer">
-          Powered by{' '}
+          Con tecnología{' '}
           <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
         </a>
       </footer>
