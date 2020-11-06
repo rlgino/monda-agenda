@@ -1,4 +1,4 @@
-const firebase = require('firebase')
+const firebase = require("firebase/app");
 require('firebase/auth')
 require('firebase/analytics')
 
@@ -18,7 +18,7 @@ if (!firebase.apps.length) {
 }
 
 const loginWithMailAndPassowrd = (mail, password) => {
-    return firebase.auth().signInWithEmailAndPassword(mail, password)
+    return firebase.default().auth().signInWithEmailAndPassword(mail, password)
 }
 
 const registerWithMailAndPassword = (mail, password) => {
