@@ -3,31 +3,36 @@ import React from 'react'
 function Card() {
     return (
         <div>
-            <div class="card">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        Component
+            <div>
+                <div class="card cart-cont">
+                    <div class="card-content">
+                        <p class="title">
+                            “There are two hard things in computer science: cache invalidation, naming things, and off-by-one errors.”
                     </p>
-                    <a href="#" class="card-header-icon" aria-label="more options">
-                        <span class="icon">
-                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </a>
-                </header>
-                <div class="card-content">
-                    <div class="content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                        <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-                        <br />
-                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                        <p class="subtitle">
+                            Jeff Atwood
+                    </p>
                     </div>
+                    <footer class="card-footer">
+                        <p class="card-footer-item">
+                            <span>
+                                View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+                            </span>
+                        </p>
+                        <p class="card-footer-item">
+                            <span>
+                                Share on <a href="#">Facebook</a>
+                            </span>
+                        </p>
+                    </footer>
                 </div>
-                <footer class="card-footer">
-                    <a href="#" class="card-footer-item">Save</a>
-                    <a href="#" class="card-footer-item">Edit</a>
-                    <a href="#" class="card-footer-item">Delete</a>
-                </footer>
             </div>
+
+            <style jsx>{`
+            .cart-cont {
+                width: 25em;
+            }
+                `}</style>
         </div>
     )
 }

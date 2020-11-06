@@ -1,6 +1,4 @@
-import '../styles/globals.css'
-import { onAuthChange } from '../firebase/client'
-import { useState, useEffect } from 'react'
+// import '../styles/globals.css'
 import { UserProvider } from '../context/usercontext'
 import '../scss/styles.scss'
 

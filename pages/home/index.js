@@ -2,13 +2,11 @@ import { useRouter } from 'next/router'
 import { useUser } from '../../context/usercontext'
 import { useEffect } from 'react'
 import Card from '../../components/card/card'
+import Navbar from '../../components/navbar/navbar'
 
 const Home = ({ ctx }) => {
-    const { user, signOut } = useUser()
+    const { user } = useUser()
     const router = useRouter()
-    const logout = () => {
-        signOut()
-    }
 
     useEffect(() => {
         if (!user) {
@@ -18,35 +16,16 @@ const Home = ({ ctx }) => {
     }, [user])
 
     return (<>
-        <main>
-            <input type="button" value="Salir" onClick={e => logout()} />
-            <div className="login-container">
-                <h1>Bienvenido!</h1>
+        <Navbar />
+        <main className="is-flex-direction-column">
+            <h1>Bienvenido!</h1>
+            <div class="is-flex-direction-row is-flex-wrap-wrap">
+                <Card />
+                <Card />
+                <Card />
                 <Card />
             </div>
         </main>
-
-        <style jsx>
-            {`
-            main {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .login-container {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 30%;
-                height: 20em;
-                width: 20em;
-                border: 1px solid black;
-                padding: 1em;
-                box-shadow: 0 10px 25px rgba(0,0,0, .3);
-            }
-            `}
-        </style>
     </>
     )
 }
