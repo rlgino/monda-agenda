@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router'
 import { useUser } from '../../context/usercontext'
 import { useEffect } from 'react'
+import Card from '../../components/card/card'
 
 const Home = ({ ctx }) => {
     const { user, signOut } = useUser()
@@ -21,6 +22,7 @@ const Home = ({ ctx }) => {
             <input type="button" value="Salir" onClick={e => logout()} />
             <div className="login-container">
                 <h1>Bienvenido!</h1>
+                <Card />
             </div>
         </main>
 
