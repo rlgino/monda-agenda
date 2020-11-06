@@ -43,11 +43,29 @@ const index = () => {
                 <form onSubmit={e => { isRegister ? register(e) : loginClick(e) }}>
                     <img src="/logo.jpeg" alt="Monda Logo" />
                     <h1>Bienvenido</h1>
-                    <input type="email" placeholder="Email" onChange={e => setMail(e.target.value)} required />
-                    <input type="password" placeholder="Password" onChange={e => setPass(e.target.value)} required />
-                    <input type="submit" value={isRegister ? "Registrarse" : "Login"} />
-                    <div onClick={() => changeAction()} className="action">
-                        {!isRegister ? "Registrarse" : "Logguearse"}
+
+                    <div class="field">
+                        <p class="control has-icons-left has-icons-right">
+                            <input class="input" type="email" placeholder="Email" />
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-envelope"></i>
+                            </span>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-check"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div class="field">
+                        <p class="control has-icons-left">
+                            <input class="input" type="password" placeholder="Password" />
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </p>
+                    </div>
+                    <div className="control is-flex is-flex-direction-row is-justify-content-space-between">
+                        <button class="button is-success" type="submit">{isRegister ? "Registrarse" : "Login"}</button>
+                        <button class="button is-primary" onClick={() => changeAction()}>{!isRegister ? "Registrarse" : "Logguearse"}</button>
                     </div>
                     {errorMsg ? <div className="error-msg">{errorMsg}</div> : null}
                 </form>
@@ -81,33 +99,13 @@ const index = () => {
                     align-items: stretch;
                 }
 
-                input[type="email"],input[type="password"] {
-                    margin-bottom: 1em;
-                    background-color: red;
-                    border: none;
-                    color: black;
-                    padding: 1em;
-                    border-radius: 25px;
-                    width: 95%;
-                }
-
-                input[type="submit"] {
-                    margin-bottom: 1em;
-                    background-color: black;
-                    border: none;
-                    color: white;
-                    padding: 0.5em;
-                    border-radius: 25px;
-                    width: 95%;
+                .control {
+                    width:100%;
                 }
 
                 .error-msg {
                     color: red;
                     font-size: 0.9em;
-                }
-
-                .action {
-                    margin: auto;
                 }
 
                 `}
