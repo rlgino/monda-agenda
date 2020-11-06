@@ -16,7 +16,6 @@ const Home = ({ ctx }) => {
     }, [user])
 
     return (<>
-        <Navbar />
         <main className="is-flex-direction-column">
             <header className="is-flex is-flex-direction-row is-justify-content-space-between is-align-content-center">
                 <h1 className="title is-1 p-4">Bienvenido!</h1>
