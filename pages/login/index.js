@@ -1,7 +1,9 @@
-import { loginWithMailAndPassowrd, logEvent, registerWithMailAndPassword } from './../../firebase/client'
+import { logEvent } from './../../firebase/client'
 import { useState, useEffect } from 'react';
 import { useUser } from '../../context/usercontext';
 import { useRouter } from 'next/router';
+import { faLock, faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const index = () => {
 
@@ -29,7 +31,9 @@ const index = () => {
 
     const loginClick = (e) => {
         e.preventDefault()
-        login(mail, pass)
+        login(mail, pass).catch(e => {
+            setErrorMsg(e.message)
+        })
     }
 
     const register = (e) => {
@@ -44,30 +48,29 @@ const index = () => {
                     <img src="/logo.jpeg" alt="Monda Logo" />
                     <h1>Bienvenido</h1>
 
-                    <div class="field">
-                        <p class="control has-icons-left has-icons-right">
-                            <input class="input" type="email" placeholder="Email" />
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-envelope"></i>
+                    <div className="field">
+                        <p className="control has-icons-left has-icons-right">
+                            <input className="input" type="email" placeholder="Email" values={mail} onChange={e => setMail(e.target.value)} />
+                            <span className="local-icon">
+                                <FontAwesomeIcon icon={faEnvelope} className="icon is-small is-left" />
                             </span>
-                            <span class="icon is-small is-right">
-                                <i class="fas fa-check"></i>
+
+                            <span className="icon is-small is-right">
+                                <i className="fas fa-check"></i>
                             </span>
                         </p>
                     </div>
-                    <div class="field">
-                        <p class="control has-icons-left">
-                            <input class="input" type="password" placeholder="Password" />
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-lock"></i>
-                            </span>
+                    <div className="field">
+                        <p className="control has-icons-left">
+                            <input className="input" type="password" placeholder="Password" value={pass} onChange={e => setPass(e.target.value)} />
+                            <FontAwesomeIcon icon={faLock} className="icon is-small is-left local-icon" />
                         </p>
                     </div>
                     <div className="control is-flex is-flex-direction-row is-justify-content-space-between">
-                        <button class="button is-success" type="submit">{isRegister ? "Registrarse" : "Login"}</button>
-                        <button class="button is-primary" onClick={() => changeAction()}>{!isRegister ? "Registrarse" : "Logguearse"}</button>
+                        <button className="button is-success" type="submit">{isRegister ? "Registrarse" : "Login"}</button>
+                        <button className="button is-primary" onClick={() => changeAction()}>{!isRegister ? "Registrarse" : "Logguearse"}</button>
                     </div>
-                    {errorMsg ? <div className="error-msg">{errorMsg}</div> : null}
+                    {errorMsg ? <div className="has-text-danger">{errorMsg}</div> : null}
                 </form>
             </div>
 
@@ -97,6 +100,12 @@ const index = () => {
                     display: flex;
                     flex-direction: column;
                     align-items: stretch;
+                }
+
+                .local-icon {
+                    width: 2em;
+                    padding: .2em;
+                    margin-left: 0.3em;
                 }
 
                 .control {

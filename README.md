@@ -15,7 +15,29 @@ npm install node-sass@4.14.1 -s
 import '../scss/styles.scss'
 ```
 
+### Adding Font Awesome
+1. Add dependencies:
+```bash
+npm i --save @fortawesome/fontawesome-svg-core \
+             @fortawesome/free-solid-svg-icons \
+             @fortawesome/free-brands-svg-icons \
+             @fortawesome/react-fontawesome
+
+npm install --save-dev @zeit/next-css
+```
+2. Create your component:
+```javascript
+import { ReactElement } from 'react'
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+export default function MyComponent(): ReactElement {
+  return <FontAwesomeIcon icon={faCoffee} />
+}
+```
+
 ### Stack
 * NextJS
 * Firebase
 * Bulma
+* Font Awesome Icons
