@@ -22,7 +22,7 @@ export function UserProvider(props) {
     }, [])
 
     const login = (mail, password) => {
-        loginWithMailAndPassowrd(mail, password)
+        return loginWithMailAndPassowrd(mail, password)
     }
 
     const signUp = (mail, password, displayName) => {
