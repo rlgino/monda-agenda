@@ -22,8 +22,6 @@ npm i --save @fortawesome/fontawesome-svg-core \
              @fortawesome/free-solid-svg-icons \
              @fortawesome/free-brands-svg-icons \
              @fortawesome/react-fontawesome
-
-npm install --save-dev @zeit/next-css
 ```
 2. Create your component:
 ```javascript
