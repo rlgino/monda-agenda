@@ -1,4 +1,4 @@
-const firebase = require('firebase')
+const firebase = require("firebase/app");
 require('firebase/auth')
 require('firebase/analytics')
 
@@ -12,29 +12,31 @@ var firebaseConfig = {
     appId: "1:440530510753:web:6dc0ab24122e60a72f21e0",
     measurementId: "G-G7JH0J2END"
 };
+
+const app = firebase.default
 // Initialize Firebase
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig)
+if (!app.apps.length) {
+    firebase.default.initializeApp(firebaseConfig)
 }
 
 const loginWithMailAndPassowrd = (mail, password) => {
-    return firebase.auth().signInWithEmailAndPassword(mail, password)
+    return app.auth().signInWithEmailAndPassword(mail, password)
 }
 
 const registerWithMailAndPassword = (mail, password) => {
-    return firebase.auth().createUserWithEmailAndPassword(mail, password)
+    return app.auth().createUserWithEmailAndPassword(mail, password)
 }
 
 const firebaseSignOut = () => {
-    return firebase.auth().signOut()
+    return app.auth().signOut()
 }
 
 const onAuthChange = (onChange) => {
-    return firebase.auth().onAuthStateChanged(onChange)
+    return app.auth().onAuthStateChanged(onChange)
 }
 
 const logEvent = (event, attributes) => {
-    firebase.analytics().logEvent(event, attributes);
+    app.analytics().logEvent(event, attributes);
 }
 
 export { loginWithMailAndPassowrd, onAuthChange, registerWithMailAndPassword, logEvent, firebaseSignOut }

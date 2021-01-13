@@ -2,7 +2,6 @@ import { useRouter } from 'next/router'
 import { useUser } from '../../context/usercontext'
 import { useEffect } from 'react'
 import Card from '../../components/card/card'
-import Navbar from '../../components/navbar/navbar'
 
 const Home = ({ ctx }) => {
     const { user } = useUser()
@@ -15,11 +14,15 @@ const Home = ({ ctx }) => {
         return () => { }
     }, [user])
 
+    const createContact = () => {
+        router.push("/creation")
+    }
+
     return (<>
         <main className="is-flex-direction-column">
             <header className="is-flex is-flex-direction-row is-justify-content-space-between is-align-content-center">
                 <h1 className="title is-1 p-4">Bienvenido!</h1>
-                <input type="button" value="Crear" className="button is-primary" />
+                <input type="button" value="Crear" className="button is-primary" onClick={e => createContact()} />
             </header>
             <div className="is-flex is-flex-direction-row is-justify-content-flex-space-around is-flex-wrap-wrap">
                 <Card />
